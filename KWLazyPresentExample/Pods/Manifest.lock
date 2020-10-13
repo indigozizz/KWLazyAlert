@@ -1,0 +1,16 @@
+PODS:
+  - KWLazyPresent (1.0.1)
+
+DEPENDENCIES:
+  - KWLazyPresent
+
+SPEC REPOS:
+  trunk:
+    - KWLazyPresent
+
+SPEC CHECKSUMS:
+  KWLazyPresent: aa58c37665ea2798a5557a4efb7a7231292d6642
+
+PODFILE CHECKSUM: 732eb782ce4447764a1e673ec3bf6c0e8fa400bb
+
+COCOAPODS: 1.9.3
