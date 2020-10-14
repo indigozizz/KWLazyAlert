@@ -1,5 +1,5 @@
 PODS:
-  - KWLazyPresent (1.0.1)
+  - KWLazyPresent (1.0.2)
 
 DEPENDENCIES:
   - KWLazyPresent
@@ -9,7 +9,7 @@ SPEC REPOS:
     - KWLazyPresent
 
 SPEC CHECKSUMS:
-  KWLazyPresent: aa58c37665ea2798a5557a4efb7a7231292d6642
+  KWLazyPresent: e03418e51113ff367e1e8140bcad587910152a2f
 
 PODFILE CHECKSUM: 732eb782ce4447764a1e673ec3bf6c0e8fa400bb
 
