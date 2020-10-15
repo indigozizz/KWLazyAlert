@@ -1,9 +1,10 @@
 /* 
-  LazyAlert.strings
+  Localizable.strings
   KWLazyPresent
 
   Created by Kawa on 2020/10/13.
   
 */
 
-"OK" = "確定";
+"OK" = "确定";
+

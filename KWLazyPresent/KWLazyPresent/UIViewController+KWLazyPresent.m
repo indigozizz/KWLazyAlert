@@ -19,20 +19,20 @@
 
 @interface UIViewController (Private)
 
-@property (nonatomic, strong) KWWindow *alertWindow;
+@property (nonatomic, strong) KWWindow *kwPresentWindow;
 
 @end
 
 @implementation UIViewController (Private)
 
-@dynamic alertWindow;
+@dynamic kwPresentWindow;
 
-- (void)setAlertWindow:(UIWindow *)alertWindow {
-    objc_setAssociatedObject(self, @selector(alertWindow), alertWindow, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+- (void)setKwPresentWindow:(UIWindow *)alertWindow {
+    objc_setAssociatedObject(self, @selector(kwPresentWindow), alertWindow, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
-- (UIWindow *)alertWindow {
-    return objc_getAssociatedObject(self, @selector(alertWindow));
+- (UIWindow *)kwPresentWindow {
+    return objc_getAssociatedObject(self, @selector(kwPresentWindow));
 }
 
 @end
@@ -52,37 +52,37 @@
 - (void)lazyPresentAnimated:(BOOL)animated
                  completion:(void (^ __nullable)(void))completion {
     [self lazyPresentAnimated:animated
-                    alertType:KWLazyAlertDefault
+                    alertType:KWLazyPresentDefaultStyle
                    completion:completion];
 }
 
 - (void)lazyPresentAnimated:(BOOL)animated
-                  alertType:(KWLazyAlertType)alertType
+                  alertType:(KWLazyPresentType)alertType
                  completion:(void (^ __nullable)(void))completion {
     
-    self.alertWindow = [[KWWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    self.kwPresentWindow = [[KWWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
         
-    self.alertWindow.rootViewController = [[UIViewController alloc] init];
+    self.kwPresentWindow.rootViewController = [[UIViewController alloc] init];
 
     id<UIApplicationDelegate> delegate = [UIApplication sharedApplication].delegate;
     // Applications that does not load with UIMainStoryboardFile might not have a window property:
     if ([delegate respondsToSelector:@selector(window)]) {
         // We inherit the main window's tintColor
-        self.alertWindow.tintColor = delegate.window.tintColor;
+        self.kwPresentWindow.tintColor = delegate.window.tintColor;
     }
 
     switch (alertType) {
-        case KWLazyAlertInAppNotification:
-            self.alertWindow.windowLevel = KWWindowLevelNotification;
+        case KWLazyPresentInAppNotification:
+            self.kwPresentWindow.windowLevel = KWWindowLevelNotification;
             break;
             
         default:
-            self.alertWindow.windowLevel = [self kwGetSuitableWindowLevel];
+            self.kwPresentWindow.windowLevel = [self kwGetSuitableWindowLevel];
             break;
     }
 
-    [self.alertWindow makeKeyAndVisible];
-    [self.alertWindow.rootViewController presentViewController:self animated:animated completion:completion];
+    [self.kwPresentWindow makeKeyAndVisible];
+    [self.kwPresentWindow.rootViewController presentViewController:self animated:animated completion:completion];
 }
 
 //MARK: - Lazy Dismiss
@@ -98,8 +98,8 @@
                  completion:(void (^ __nullable)(void))completion {
     
     [self dismissViewControllerAnimated:animated completion:^{
-        self.alertWindow.hidden = YES;
-        self.alertWindow = nil;
+        self.kwPresentWindow.hidden = YES;
+        self.kwPresentWindow = nil;
         
         if (completion != nil) {
             completion();

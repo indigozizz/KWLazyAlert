@@ -14,12 +14,12 @@ NS_ASSUME_NONNULL_BEGIN
 typedef enum : NSUInteger {
     
     //WindowLevel is Previous Window Level + 1
-    KWLazyAlertDefault,
+    KWLazyPresentDefaultStyle,
     
     //WindowLevel is always UIWindowLevelAlert - 1
-    KWLazyAlertInAppNotification
+    KWLazyPresentInAppNotification
     
-} KWLazyAlertType;
+} KWLazyPresentType;
 
 @interface UIViewController (KWLazyPresent)
 
@@ -31,7 +31,7 @@ typedef enum : NSUInteger {
                  completion:(void (^ __nullable)(void))completion;
 
 - (void)lazyPresentAnimated:(BOOL)animated
-                  alertType:(KWLazyAlertType)alertType
+                  alertType:(KWLazyPresentType)alertType
                  completion:(void (^ __nullable)(void))completion;
 
 - (void)lazyDismiss;

@@ -16,7 +16,7 @@ Pod::Spec.new do |spec|
   #
 
   spec.name         = "KWLazyPresent"
-  spec.version      = "1.0.2"
+  spec.version      = "1.0.3"
   spec.summary      = "Present a UIViewController more easily and conveniently."
 
   # This description is used to generate tags and improve search results.
@@ -53,9 +53,9 @@ Pod::Spec.new do |spec|
   #  profile URL.
   #
 
-  spec.author             = { "Kawa Chen" => "indigozizz@gmail.com" }
+  spec.author             = { "Kawa Chen" => "Kawa5292@gmail.com" }
   # Or just: spec.author    = "Kawa Chen"
-  # spec.authors            = { "Kawa Chen" => "KawaChen@chailease.com.tw" }
+  # spec.authors            = { "Kawa Chen" => "Kawa5292@gmail.com" }
   # spec.social_media_url   = "https://twitter.com/Kawa Chen"
 
   # ――― Platform Specifics ――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
@@ -91,7 +91,7 @@ Pod::Spec.new do |spec|
   #  Not including the public_header_files will make all headers public.
   #
 
-  spec.source_files  = "KWLazyPresent", "KWLazyPresent/**/*.{h,m}"
+  spec.source_files  = "KWLazyPresent", "KWLazyPresent/**/*.{h,m,strings}"
   # spec.exclude_files = "Classes/Exclude"
 
   # spec.public_header_files = "Classes/**/*.h"
