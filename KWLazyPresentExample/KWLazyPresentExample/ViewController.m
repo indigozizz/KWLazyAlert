@@ -2,11 +2,10 @@
 //  ViewController.m
 //  KWLazyPresentExample
 //
-//  Created by Kawa on 2020/10/13.
+//  Created by Kawa on 2020/10/19.
 //
 
 #import "ViewController.h"
-
 #import "NotificationViewController.h"
 #import "UIViewController+KWLazyPresent.h"
 
@@ -122,7 +121,8 @@
     NotificationViewController *viewController = [NotificationViewController new];
     
     viewController.modalPresentationStyle = UIModalPresentationOverCurrentContext;
-    [viewController lazyPresentAnimated:NO alertType:KWLazyAlertInAppNotification completion:^{
+    
+    [viewController lazyPresentAnimated:NO alertType:KWLazyPresentInAppNotification completion:^{
         NSLog(@"lazyPresentCompletion (Notification)");
     }];
 }

@@ -3,115 +3,181 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 50;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		520BDE7425355B9700AFAE77 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 520BDE7325355B9700AFAE77 /* AppDelegate.m */; };
-		520BDE7A25355B9700AFAE77 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 520BDE7925355B9700AFAE77 /* ViewController.m */; };
-		520BDE7D25355B9700AFAE77 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 520BDE7B25355B9700AFAE77 /* Main.storyboard */; };
-		520BDE7F25355B9800AFAE77 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 520BDE7E25355B9800AFAE77 /* Assets.xcassets */; };
-		520BDE8225355B9800AFAE77 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 520BDE8025355B9800AFAE77 /* LaunchScreen.storyboard */; };
-		520BDE8525355B9800AFAE77 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 520BDE8425355B9800AFAE77 /* main.m */; };
-		520BDE9225355DE000AFAE77 /* NotificationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 520BDE9125355DE000AFAE77 /* NotificationViewController.m */; };
-		9C898045FD2AD4934D65FA05 /* Pods_KWLazyPresentExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A13A456A6F8B19F90CA5E88 /* Pods_KWLazyPresentExample.framework */; };
+		528D236E253D598400F7BE8E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 528D236D253D598400F7BE8E /* AppDelegate.m */; };
+		528D2371253D598400F7BE8E /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 528D2370253D598400F7BE8E /* SceneDelegate.m */; };
+		528D2374253D598400F7BE8E /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 528D2373253D598400F7BE8E /* ViewController.m */; };
+		528D2377253D598400F7BE8E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 528D2375253D598400F7BE8E /* Main.storyboard */; };
+		528D2379253D598500F7BE8E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 528D2378253D598500F7BE8E /* Assets.xcassets */; };
+		528D237C253D598500F7BE8E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 528D237A253D598500F7BE8E /* LaunchScreen.storyboard */; };
+		528D237F253D598500F7BE8E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 528D237E253D598500F7BE8E /* main.m */; };
+		528D239F253D599700F7BE8E /* KWLazyPresent.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 528D239C253D599300F7BE8E /* KWLazyPresent.framework */; };
+		528D23A0253D599700F7BE8E /* KWLazyPresent.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 528D239C253D599300F7BE8E /* KWLazyPresent.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		528D23A7253D59E600F7BE8E /* NotificationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 528D23A6253D59E600F7BE8E /* NotificationViewController.m */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		528D239B253D599300F7BE8E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 528D2397253D599300F7BE8E /* KWLazyPresent.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 520BDE3A2535490F00AFAE77;
+			remoteInfo = KWLazyPresent;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		528D23A1253D599700F7BE8E /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				528D23A0253D599700F7BE8E /* KWLazyPresent.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
-		0863077E008C7A364EFA1CBF /* Pods-KWLazyPresentExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KWLazyPresentExample.debug.xcconfig"; path = "Target Support Files/Pods-KWLazyPresentExample/Pods-KWLazyPresentExample.debug.xcconfig"; sourceTree = "<group>"; };
-		3AB6074489070F2DBDA9A89B /* Pods-KWLazyPresentExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KWLazyPresentExample.release.xcconfig"; path = "Target Support Files/Pods-KWLazyPresentExample/Pods-KWLazyPresentExample.release.xcconfig"; sourceTree = "<group>"; };
-		520BDE6F25355B9700AFAE77 /* KWLazyPresentExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KWLazyPresentExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		520BDE7225355B9700AFAE77 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		520BDE7325355B9700AFAE77 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		520BDE7825355B9700AFAE77 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		520BDE7925355B9700AFAE77 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		520BDE7C25355B9700AFAE77 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		520BDE7E25355B9800AFAE77 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		520BDE8125355B9800AFAE77 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		520BDE8325355B9800AFAE77 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		520BDE8425355B9800AFAE77 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		520BDE9025355DE000AFAE77 /* NotificationViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NotificationViewController.h; sourceTree = "<group>"; };
-		520BDE9125355DE000AFAE77 /* NotificationViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NotificationViewController.m; sourceTree = "<group>"; };
-		8A13A456A6F8B19F90CA5E88 /* Pods_KWLazyPresentExample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KWLazyPresentExample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		528D2369253D598400F7BE8E /* KWLazyPresentExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KWLazyPresentExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		528D236C253D598400F7BE8E /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		528D236D253D598400F7BE8E /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		528D236F253D598400F7BE8E /* SceneDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SceneDelegate.h; sourceTree = "<group>"; };
+		528D2370253D598400F7BE8E /* SceneDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SceneDelegate.m; sourceTree = "<group>"; };
+		528D2372253D598400F7BE8E /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		528D2373253D598400F7BE8E /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		528D2376253D598400F7BE8E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		528D2378253D598500F7BE8E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		528D237B253D598500F7BE8E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		528D237D253D598500F7BE8E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		528D237E253D598500F7BE8E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		528D2388253D599300F7BE8E /* KWLazyPresent.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; path = KWLazyPresent.podspec; sourceTree = "<group>"; };
+		528D238B253D599300F7BE8E /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		528D238C253D599300F7BE8E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		528D238D253D599300F7BE8E /* KWPassthroughView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KWPassthroughView.h; sourceTree = "<group>"; };
+		528D238E253D599300F7BE8E /* UIViewController+KWLazyPresent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIViewController+KWLazyPresent.h"; sourceTree = "<group>"; };
+		528D238F253D599300F7BE8E /* KWWindow.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KWWindow.h; sourceTree = "<group>"; };
+		528D2390253D599300F7BE8E /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		528D2391253D599300F7BE8E /* KWPassthroughView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KWPassthroughView.m; sourceTree = "<group>"; };
+		528D2392253D599300F7BE8E /* KWLazyPresent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KWLazyPresent.h; sourceTree = "<group>"; };
+		528D2393253D599300F7BE8E /* KWWindow.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KWWindow.m; sourceTree = "<group>"; };
+		528D2394253D599300F7BE8E /* UIViewController+KWLazyPresent.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+KWLazyPresent.m"; sourceTree = "<group>"; };
+		528D2395253D599300F7BE8E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		528D2396253D599300F7BE8E /* Podfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
+		528D2397253D599300F7BE8E /* KWLazyPresent.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = KWLazyPresent.xcodeproj; sourceTree = "<group>"; };
+		528D23A5253D59E600F7BE8E /* NotificationViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NotificationViewController.h; sourceTree = "<group>"; };
+		528D23A6253D59E600F7BE8E /* NotificationViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NotificationViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		520BDE6C25355B9700AFAE77 /* Frameworks */ = {
+		528D2366253D598400F7BE8E /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9C898045FD2AD4934D65FA05 /* Pods_KWLazyPresentExample.framework in Frameworks */,
+				528D239F253D599700F7BE8E /* KWLazyPresent.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		3A418F7571A57A2614EB64EB /* Frameworks */ = {
+		528D2360253D598400F7BE8E = {
 			isa = PBXGroup;
 			children = (
-				8A13A456A6F8B19F90CA5E88 /* Pods_KWLazyPresentExample.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		520BDE6625355B9700AFAE77 = {
-			isa = PBXGroup;
-			children = (
-				520BDE7125355B9700AFAE77 /* KWLazyPresentExample */,
-				520BDE7025355B9700AFAE77 /* Products */,
-				FA365D48CDF41BF726A0629E /* Pods */,
-				3A418F7571A57A2614EB64EB /* Frameworks */,
+				528D236B253D598400F7BE8E /* KWLazyPresentExample */,
+				528D236A253D598400F7BE8E /* Products */,
+				528D2386253D599300F7BE8E /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
-		520BDE7025355B9700AFAE77 /* Products */ = {
+		528D236A253D598400F7BE8E /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				520BDE6F25355B9700AFAE77 /* KWLazyPresentExample.app */,
+				528D2369253D598400F7BE8E /* KWLazyPresentExample.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		520BDE7125355B9700AFAE77 /* KWLazyPresentExample */ = {
+		528D236B253D598400F7BE8E /* KWLazyPresentExample */ = {
 			isa = PBXGroup;
 			children = (
-				520BDE7225355B9700AFAE77 /* AppDelegate.h */,
-				520BDE7325355B9700AFAE77 /* AppDelegate.m */,
-				520BDE7825355B9700AFAE77 /* ViewController.h */,
-				520BDE7925355B9700AFAE77 /* ViewController.m */,
-				520BDE9025355DE000AFAE77 /* NotificationViewController.h */,
-				520BDE9125355DE000AFAE77 /* NotificationViewController.m */,
-				520BDE7B25355B9700AFAE77 /* Main.storyboard */,
-				520BDE7E25355B9800AFAE77 /* Assets.xcassets */,
-				520BDE8025355B9800AFAE77 /* LaunchScreen.storyboard */,
-				520BDE8325355B9800AFAE77 /* Info.plist */,
-				520BDE8425355B9800AFAE77 /* main.m */,
+				528D236C253D598400F7BE8E /* AppDelegate.h */,
+				528D236D253D598400F7BE8E /* AppDelegate.m */,
+				528D236F253D598400F7BE8E /* SceneDelegate.h */,
+				528D2370253D598400F7BE8E /* SceneDelegate.m */,
+				528D2372253D598400F7BE8E /* ViewController.h */,
+				528D2373253D598400F7BE8E /* ViewController.m */,
+				528D23A5253D59E600F7BE8E /* NotificationViewController.h */,
+				528D23A6253D59E600F7BE8E /* NotificationViewController.m */,
+				528D2375253D598400F7BE8E /* Main.storyboard */,
+				528D2378253D598500F7BE8E /* Assets.xcassets */,
+				528D237A253D598500F7BE8E /* LaunchScreen.storyboard */,
+				528D237D253D598500F7BE8E /* Info.plist */,
+				528D237E253D598500F7BE8E /* main.m */,
 			);
 			path = KWLazyPresentExample;
 			sourceTree = "<group>";
 		};
-		FA365D48CDF41BF726A0629E /* Pods */ = {
+		528D2386253D599300F7BE8E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				0863077E008C7A364EFA1CBF /* Pods-KWLazyPresentExample.debug.xcconfig */,
-				3AB6074489070F2DBDA9A89B /* Pods-KWLazyPresentExample.release.xcconfig */,
+				528D2387253D599300F7BE8E /* KWLazyPresent */,
 			);
-			path = Pods;
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		528D2387253D599300F7BE8E /* KWLazyPresent */ = {
+			isa = PBXGroup;
+			children = (
+				528D2388253D599300F7BE8E /* KWLazyPresent.podspec */,
+				528D2389253D599300F7BE8E /* KWLazyPresent */,
+				528D2396253D599300F7BE8E /* Podfile */,
+				528D2397253D599300F7BE8E /* KWLazyPresent.xcodeproj */,
+			);
+			name = KWLazyPresent;
+			path = ../KWLazyPresent;
+			sourceTree = "<group>";
+		};
+		528D2389253D599300F7BE8E /* KWLazyPresent */ = {
+			isa = PBXGroup;
+			children = (
+				528D2395253D599300F7BE8E /* Info.plist */,
+				528D2392253D599300F7BE8E /* KWLazyPresent.h */,
+				528D238D253D599300F7BE8E /* KWPassthroughView.h */,
+				528D2391253D599300F7BE8E /* KWPassthroughView.m */,
+				528D238E253D599300F7BE8E /* UIViewController+KWLazyPresent.h */,
+				528D2394253D599300F7BE8E /* UIViewController+KWLazyPresent.m */,
+				528D238F253D599300F7BE8E /* KWWindow.h */,
+				528D2393253D599300F7BE8E /* KWWindow.m */,
+				528D238A253D599300F7BE8E /* Localizable.strings */,
+			);
+			path = KWLazyPresent;
+			sourceTree = "<group>";
+		};
+		528D2398253D599300F7BE8E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				528D239C253D599300F7BE8E /* KWLazyPresent.framework */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		520BDE6E25355B9700AFAE77 /* KWLazyPresentExample */ = {
+		528D2368253D598400F7BE8E /* KWLazyPresentExample */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 520BDE8825355B9800AFAE77 /* Build configuration list for PBXNativeTarget "KWLazyPresentExample" */;
+			buildConfigurationList = 528D2382253D598500F7BE8E /* Build configuration list for PBXNativeTarget "KWLazyPresentExample" */;
 			buildPhases = (
-				DDC9DC3B8F587134E92AEFD5 /* [CP] Check Pods Manifest.lock */,
-				520BDE6B25355B9700AFAE77 /* Sources */,
-				520BDE6C25355B9700AFAE77 /* Frameworks */,
-				520BDE6D25355B9700AFAE77 /* Resources */,
-				CCF8E184B2AF7EB8A9DE6086 /* [CP] Embed Pods Frameworks */,
+				528D2365253D598400F7BE8E /* Sources */,
+				528D2366253D598400F7BE8E /* Frameworks */,
+				528D2367253D598400F7BE8E /* Resources */,
+				528D23A1253D599700F7BE8E /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -119,130 +185,117 @@
 			);
 			name = KWLazyPresentExample;
 			productName = KWLazyPresentExample;
-			productReference = 520BDE6F25355B9700AFAE77 /* KWLazyPresentExample.app */;
+			productReference = 528D2369253D598400F7BE8E /* KWLazyPresentExample.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		520BDE6725355B9700AFAE77 /* Project object */ = {
+		528D2361253D598400F7BE8E /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 1200;
 				TargetAttributes = {
-					520BDE6E25355B9700AFAE77 = {
+					528D2368253D598400F7BE8E = {
 						CreatedOnToolsVersion = 12.0.1;
 					};
 				};
 			};
-			buildConfigurationList = 520BDE6A25355B9700AFAE77 /* Build configuration list for PBXProject "KWLazyPresentExample" */;
+			buildConfigurationList = 528D2364253D598400F7BE8E /* Build configuration list for PBXProject "KWLazyPresentExample" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 				Base,
+				"zh-Hans",
+				"zh-Hant",
 			);
-			mainGroup = 520BDE6625355B9700AFAE77;
-			productRefGroup = 520BDE7025355B9700AFAE77 /* Products */;
+			mainGroup = 528D2360253D598400F7BE8E;
+			productRefGroup = 528D236A253D598400F7BE8E /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 528D2398253D599300F7BE8E /* Products */;
+					ProjectRef = 528D2397253D599300F7BE8E /* KWLazyPresent.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
-				520BDE6E25355B9700AFAE77 /* KWLazyPresentExample */,
+				528D2368253D598400F7BE8E /* KWLazyPresentExample */,
 			);
 		};
 /* End PBXProject section */
 
+/* Begin PBXReferenceProxy section */
+		528D239C253D599300F7BE8E /* KWLazyPresent.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = KWLazyPresent.framework;
+			remoteRef = 528D239B253D599300F7BE8E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
 /* Begin PBXResourcesBuildPhase section */
-		520BDE6D25355B9700AFAE77 /* Resources */ = {
+		528D2367253D598400F7BE8E /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				520BDE8225355B9800AFAE77 /* LaunchScreen.storyboard in Resources */,
-				520BDE7F25355B9800AFAE77 /* Assets.xcassets in Resources */,
-				520BDE7D25355B9700AFAE77 /* Main.storyboard in Resources */,
+				528D237C253D598500F7BE8E /* LaunchScreen.storyboard in Resources */,
+				528D2379253D598500F7BE8E /* Assets.xcassets in Resources */,
+				528D2377253D598400F7BE8E /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
-/* Begin PBXShellScriptBuildPhase section */
-		CCF8E184B2AF7EB8A9DE6086 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-KWLazyPresentExample/Pods-KWLazyPresentExample-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-KWLazyPresentExample/Pods-KWLazyPresentExample-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-KWLazyPresentExample/Pods-KWLazyPresentExample-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		DDC9DC3B8F587134E92AEFD5 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-KWLazyPresentExample-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
-
 /* Begin PBXSourcesBuildPhase section */
-		520BDE6B25355B9700AFAE77 /* Sources */ = {
+		528D2365253D598400F7BE8E /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				520BDE7A25355B9700AFAE77 /* ViewController.m in Sources */,
-				520BDE7425355B9700AFAE77 /* AppDelegate.m in Sources */,
-				520BDE8525355B9800AFAE77 /* main.m in Sources */,
-				520BDE9225355DE000AFAE77 /* NotificationViewController.m in Sources */,
+				528D2374253D598400F7BE8E /* ViewController.m in Sources */,
+				528D236E253D598400F7BE8E /* AppDelegate.m in Sources */,
+				528D237F253D598500F7BE8E /* main.m in Sources */,
+				528D23A7253D59E600F7BE8E /* NotificationViewController.m in Sources */,
+				528D2371253D598400F7BE8E /* SceneDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		520BDE7B25355B9700AFAE77 /* Main.storyboard */ = {
+		528D2375253D598400F7BE8E /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				520BDE7C25355B9700AFAE77 /* Base */,
+				528D2376253D598400F7BE8E /* Base */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
-		520BDE8025355B9800AFAE77 /* LaunchScreen.storyboard */ = {
+		528D237A253D598500F7BE8E /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				520BDE8125355B9800AFAE77 /* Base */,
+				528D237B253D598500F7BE8E /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		528D238A253D599300F7BE8E /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				528D238B253D599300F7BE8E /* zh-Hans */,
+				528D238C253D599300F7BE8E /* en */,
+				528D2390253D599300F7BE8E /* zh-Hant */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		520BDE8625355B9800AFAE77 /* Debug */ = {
+		528D2380253D598500F7BE8E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -293,7 +346,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -301,7 +354,7 @@
 			};
 			name = Debug;
 		};
-		520BDE8725355B9800AFAE77 /* Release */ = {
+		528D2381253D598500F7BE8E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -346,7 +399,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -354,68 +407,64 @@
 			};
 			name = Release;
 		};
-		520BDE8925355B9800AFAE77 /* Debug */ = {
+		528D2383253D598500F7BE8E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0863077E008C7A364EFA1CBF /* Pods-KWLazyPresentExample.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 959KPZT2WX;
 				INFOPLIST_FILE = KWLazyPresentExample/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.kawastudio.KWLazyPresentExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
-		520BDE8A25355B9800AFAE77 /* Release */ = {
+		528D2384253D598500F7BE8E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3AB6074489070F2DBDA9A89B /* Pods-KWLazyPresentExample.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 959KPZT2WX;
 				INFOPLIST_FILE = KWLazyPresentExample/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.kawastudio.KWLazyPresentExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		520BDE6A25355B9700AFAE77 /* Build configuration list for PBXProject "KWLazyPresentExample" */ = {
+		528D2364253D598400F7BE8E /* Build configuration list for PBXProject "KWLazyPresentExample" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				520BDE8625355B9800AFAE77 /* Debug */,
-				520BDE8725355B9800AFAE77 /* Release */,
+				528D2380253D598500F7BE8E /* Debug */,
+				528D2381253D598500F7BE8E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		520BDE8825355B9800AFAE77 /* Build configuration list for PBXNativeTarget "KWLazyPresentExample" */ = {
+		528D2382253D598500F7BE8E /* Build configuration list for PBXNativeTarget "KWLazyPresentExample" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				520BDE8925355B9800AFAE77 /* Debug */,
-				520BDE8A25355B9800AFAE77 /* Release */,
+				528D2383253D598500F7BE8E /* Debug */,
+				528D2384253D598500F7BE8E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 520BDE6725355B9700AFAE77 /* Project object */;
+	rootObject = 528D2361253D598400F7BE8E /* Project object */;
 }

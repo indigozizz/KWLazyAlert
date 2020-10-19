@@ -1,6 +1,0 @@
-framework module KWLazyPresent {
-  umbrella header "KWLazyPresent-umbrella.h"
-
-  export *
-  module * { export * }
-}

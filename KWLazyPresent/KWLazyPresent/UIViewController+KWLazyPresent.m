@@ -60,16 +60,41 @@
                   alertType:(KWLazyPresentType)alertType
                  completion:(void (^ __nullable)(void))completion {
     
-    self.kwPresentWindow = [[KWWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    UIWindow *window;
+    
+    if (@available(iOS 13, *)) {
         
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"activationState == %ld", UISceneActivationStateForegroundActive];
+        
+        UIWindowScene *windowScene = (UIWindowScene *)[[UIApplication sharedApplication].connectedScenes filteredSetUsingPredicate:predicate].allObjects.firstObject;
+        
+        if (windowScene != nil) {
+            window = windowScene.windows.firstObject;
+            
+            self.kwPresentWindow = [[KWWindow alloc] initWithWindowScene:windowScene];
+            self.kwPresentWindow.frame = UIScreen.mainScreen.bounds;
+        }
+        
+    }
+    
+    if (self.kwPresentWindow == nil) {
+        self.kwPresentWindow = [[KWWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    }
+    
     self.kwPresentWindow.rootViewController = [[UIViewController alloc] init];
 
-    id<UIApplicationDelegate> delegate = [UIApplication sharedApplication].delegate;
-    // Applications that does not load with UIMainStoryboardFile might not have a window property:
-    if ([delegate respondsToSelector:@selector(window)]) {
-        // We inherit the main window's tintColor
-        self.kwPresentWindow.tintColor = delegate.window.tintColor;
+    if (window == nil) {
+        NSLog(@"Window not found in SceneDelegate");
+        window = [UIApplication sharedApplication].windows.firstObject;
     }
+    
+    if (window == nil) {
+        NSLog(@"Window not found in AppDelegate");
+    }
+    else {
+        self.kwPresentWindow.tintColor = window.tintColor;
+    }
+    
 
     switch (alertType) {
         case KWLazyPresentInAppNotification:

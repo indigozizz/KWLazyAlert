@@ -2,7 +2,7 @@
 //  NotificationViewController.m
 //  KWLazyPresentExample
 //
-//  Created by Kawa on 2020/10/13.
+//  Created by Kawa on 2020/10/19.
 //
 
 #import "NotificationViewController.h"
@@ -23,12 +23,17 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    [self showNotificationViewWithTitle:@"Notification Title" andMessage:@"Notification Message"];
     
     //MARK: Add KWPassthroughView to pass the touches between Windows
     KWPassthroughView *passthroughView = [KWPassthroughView new];
     passthroughView.frame = self.view.bounds;
     [self.view addSubview:passthroughView];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    [self showNotificationViewWithTitle:@"Notification Title" andMessage:@"Notification Message"];
 }
 
 /*
@@ -47,10 +52,10 @@
     CGFloat leftInset = 16.0f;
     CGFloat topInset = 16.0f;
     
-    
     CGFloat topSafeAreaInset = 0;
+    
     if (@available(iOS 11, *)) {
-        UIEdgeInsets edgeInsets = [[UIApplication sharedApplication] delegate].window.safeAreaInsets;
+        UIEdgeInsets edgeInsets = [UIApplication sharedApplication].windows.firstObject.safeAreaInsets;
         topSafeAreaInset = edgeInsets.top;
     }
     
@@ -76,11 +81,11 @@
     [button addTarget:self action:@selector(notificationDismiss) forControlEvents:UIControlEventTouchUpInside];
 
     
-    UILabel *titleLable = [UILabel new];
-    titleLable.font = [UIFont boldSystemFontOfSize:16];
-    titleLable.textColor = UIColor.lightGrayColor;
-    titleLable.text = title;
-    titleLable.frame = CGRectMake(x, 0, width, height / 2);
+    UILabel *titleLabel = [UILabel new];
+    titleLabel.font = [UIFont boldSystemFontOfSize:16];
+    titleLabel.textColor = UIColor.lightGrayColor;
+    titleLabel.text = title;
+    titleLabel.frame = CGRectMake(x, 0, width, height / 2);
     
     UILabel *messageLabel = [UILabel new];
     messageLabel.font = [UIFont systemFontOfSize:13];
@@ -89,7 +94,7 @@
     messageLabel.numberOfLines = 2;
     messageLabel.frame = CGRectMake(x, height / 2, width, height / 2);
 
-    [notificationView addSubview:titleLable];
+    [notificationView addSubview:titleLabel];
     [notificationView addSubview:messageLabel];
     [notificationView addSubview:button];
     
