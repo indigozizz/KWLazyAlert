@@ -23,6 +23,10 @@ typedef enum : NSUInteger {
 
 @interface UIViewController (KWLazyPresent)
 
+- (void)checkLifeCycleLinkingStatus:(void (^)(BOOL granted, UIViewController *linkedViewController))completion;
+- (void)linkLifeCycleWith:(UIViewController *)viewController;
+- (void)unlinkLifeCycle;
+
 - (void)lazyPresent;
 
 - (void)lazyPresentAnimated:(BOOL)animated;

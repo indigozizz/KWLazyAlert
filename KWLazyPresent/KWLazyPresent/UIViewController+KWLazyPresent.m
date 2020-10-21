@@ -20,24 +20,142 @@
 @interface UIViewController (Private)
 
 @property (nonatomic, strong) KWWindow *kwPresentWindow;
+@property (nonatomic, strong) UIViewController *kwLinkedViewController;
 
 @end
 
 @implementation UIViewController (Private)
 
 @dynamic kwPresentWindow;
+@dynamic kwLinkedViewController;
 
-- (void)setKwPresentWindow:(UIWindow *)alertWindow {
-    objc_setAssociatedObject(self, @selector(kwPresentWindow), alertWindow, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+
+- (void)setKwPresentWindow:(UIWindow *)window {
+    objc_setAssociatedObject(self, @selector(kwPresentWindow), window, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
 - (UIWindow *)kwPresentWindow {
     return objc_getAssociatedObject(self, @selector(kwPresentWindow));
 }
 
+- (void)setKwLinkedViewController:(UIViewController *)viewController {
+    objc_setAssociatedObject(self, @selector(kwLinkedViewController), viewController, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+- (UIWindow *)kwLinkedViewController {
+    return objc_getAssociatedObject(self, @selector(kwLinkedViewController));
+}
+
 @end
 
+//MARK: -
+
+@interface UIViewController (PrivateLifeCycle)
+
+@end
+
+@implementation UIViewController (PrivateLifeCycle)
+
++ (void)load {
+    [super load];
+    [self swizzle];
+}
+
++ (void)swizzle {
+    
+    Method origin_viewWillAppear_method = class_getInstanceMethod([self class], @selector(viewWillAppear:));
+    Method swizzle_viewWillAppear_method = class_getInstanceMethod([self class], @selector(swizzle_viewWillAppear:));
+    
+    Method origin_viewDidAppear_method = class_getInstanceMethod([self class], @selector(viewDidAppear:));
+    Method swizzle_viewDidAppear_method = class_getInstanceMethod([self class], @selector(swizzle_viewDidAppear:));
+    
+    Method origin_viewWillDisappear_method = class_getInstanceMethod([self class], @selector(viewWillDisappear:));
+    Method swizzle_viewWillDisappear_method = class_getInstanceMethod([self class], @selector(swizzle_viewWillDisappear:));
+    
+    Method origin_viewDidDisappear_method = class_getInstanceMethod([self class], @selector(viewDidDisappear:));
+    Method swizzle_viewDidDisappear_method = class_getInstanceMethod([self class], @selector(swizzle_viewDidDisappear:));
+    
+    method_exchangeImplementations(origin_viewWillAppear_method, swizzle_viewWillAppear_method);
+    method_exchangeImplementations(origin_viewDidAppear_method, swizzle_viewDidAppear_method);
+    method_exchangeImplementations(origin_viewWillDisappear_method, swizzle_viewWillDisappear_method);
+    method_exchangeImplementations(origin_viewDidDisappear_method, swizzle_viewDidDisappear_method);
+}
+
+
+
+- (void)swizzle_viewWillAppear:(BOOL)animated {
+    //NSLog(@"swizzle_viewWillAppear: %@", self);
+    
+    [self checkLifeCycleLinkingStatus:^(BOOL linked, UIViewController *linkedViewController) {
+        if (linked) {
+            [self.kwLinkedViewController viewWillDisappear:animated];
+        }
+    }];
+    
+    [self swizzle_viewWillAppear:animated];
+}
+
+- (void)swizzle_viewDidAppear:(BOOL)animated {
+    //NSLog(@"swizzle_viewDidAppear: %@", self);
+    
+    [self checkLifeCycleLinkingStatus:^(BOOL linked, UIViewController *linkedViewController) {
+        if (linked) {
+            [self.kwLinkedViewController viewDidDisappear:animated];
+        }
+    }];
+    
+    [self swizzle_viewDidAppear:animated];
+}
+
+- (void)swizzle_viewWillDisappear:(BOOL)animated {
+    //NSLog(@"swizzle_viewWillDisappear: %@", self);
+    
+    [self checkLifeCycleLinkingStatus:^(BOOL linked, UIViewController *linkedViewController) {
+        if (linked) {
+            [self.kwLinkedViewController viewWillAppear:animated];
+        }
+    }];
+    
+    [self swizzle_viewWillDisappear:animated];
+}
+
+- (void)swizzle_viewDidDisappear:(BOOL)animated {
+    //NSLog(@"swizzle_viewDidDisappear: %@", self);
+    
+    [self checkLifeCycleLinkingStatus:^(BOOL linked, UIViewController *linkedViewController) {
+        if (linked) {
+            [self.kwLinkedViewController viewDidAppear:animated];
+        }
+    }];
+    
+    [self swizzle_viewDidDisappear:animated];
+}
+
+@end
+
+//MARK: -
+
 @implementation UIViewController (KWLazyPresent)
+
+
+//MARK: - Link LifeCycle
+- (void)checkLifeCycleLinkingStatus:(void (^)(BOOL granted, UIViewController *linkedViewController))completion {
+    
+    if (self.kwLinkedViewController && completion) {
+        completion(YES, self.kwLinkedViewController);
+        return;
+    }
+    completion(NO, nil);
+}
+
+- (void)linkLifeCycleWith:(UIViewController *)viewController {
+    self.kwLinkedViewController = viewController;
+}
+
+- (void)unlinkLifeCycle {
+    self.kwLinkedViewController = nil;
+}
+
 
 //MARK: - Lazy Present
 - (void)lazyPresent {
@@ -108,6 +226,7 @@
 
     [self.kwPresentWindow makeKeyAndVisible];
     [self.kwPresentWindow.rootViewController presentViewController:self animated:animated completion:completion];
+
 }
 
 //MARK: - Lazy Dismiss

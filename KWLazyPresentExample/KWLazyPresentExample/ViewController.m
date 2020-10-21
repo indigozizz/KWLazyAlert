@@ -30,9 +30,30 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
+    NSLog(@"viewDidLoad: %@", self);
     [self layoutInitialize];
 }
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    NSLog(@"viewWillAppear: %@", self);
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    NSLog(@"viewDidAppear: %@", self);
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    NSLog(@"viewWillDisappear: %@", self);
+}
+
+- (void)viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
+    NSLog(@"viewDidDisappear: %@", self);
+}
+
 
 /*
  #pragma mark - Navigation
@@ -133,15 +154,23 @@
 
 - (void)showButtonClick:(UIButton *)button {
     
-    //dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+
     ViewController *viewController = [ViewController new];
     
     viewController.modalPresentationStyle = UIModalPresentationOverCurrentContext;
     
+    //dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+    
+    //    [viewController lazyPresentAnimated:YES completion:^{
+    //        NSLog(@"lazyPresentCompletion");
+    //    }];
+    
+    //});
+    
+    [viewController linkLifeCycleWith:self];
     [viewController lazyPresentAnimated:YES completion:^{
         NSLog(@"lazyPresentCompletion");
     }];
-    //});
 }
 
 - (void)dismissButtonClick:(UIButton *)button {
