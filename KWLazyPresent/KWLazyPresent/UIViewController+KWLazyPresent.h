@@ -23,6 +23,10 @@ typedef enum : NSUInteger {
 
 @interface UIViewController (KWLazyPresent)
 
+////Enable: Auto call lazyDismissAnimated:NO when viewController's viewDidDisappear
+//@property (nonatomic, readwrite) BOOL kwAutoRemoveLazyWindow;
+
+//Linked: Call linkedViewController's viewWillDisappear/viewDidDisappear in viewController's viewWillAppear/viewDidAppear, and vice versa.
 - (void)checkLifeCycleLinkingStatus:(void (^)(BOOL granted, UIViewController *linkedViewController))completion;
 - (void)linkLifeCycleWith:(UIViewController *)viewController;
 - (void)unlinkLifeCycle;
@@ -38,12 +42,12 @@ typedef enum : NSUInteger {
                   alertType:(KWLazyPresentType)alertType
                  completion:(void (^ __nullable)(void))completion;
 
-- (void)lazyDismiss;
-
-- (void)lazyDismissAnimated:(BOOL)animated;
-
-- (void)lazyDismissAnimated:(BOOL)animated
-                 completion:(void (^ __nullable)(void))completion;
+//- (void)lazyDismiss;
+//
+//- (void)lazyDismissAnimated:(BOOL)animated;
+//
+//- (void)lazyDismissAnimated:(BOOL)animated
+//                 completion:(void (^ __nullable)(void))completion;
 
 @end
 

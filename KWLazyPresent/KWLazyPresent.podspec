@@ -16,7 +16,7 @@ Pod::Spec.new do |spec|
   #
 
   spec.name         = "KWLazyPresent"
-  spec.version      = "1.0.4"
+  spec.version      = "1.0.5"
   spec.summary      = "Present a UIViewController more easily and conveniently."
 
   # This description is used to generate tags and improve search results.
@@ -25,7 +25,7 @@ Pod::Spec.new do |spec|
   #   * Write the description between the DESC delimiters below.
   #   * Finally, don't worry about the indent, CocoaPods strips it!
   spec.description  = <<-DESC
-  Present a UIViewController more easily and conveniently -> LazyPresent() & LazyDismiss().
+  Present a UIViewController more easily and conveniently -> LazyPresent().
                       DESC
 
   spec.homepage     = "https://github.com/indigozizz/KWLazyPresent"

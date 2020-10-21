@@ -153,10 +153,8 @@
 }
 
 - (void)showButtonClick:(UIButton *)button {
-    
 
     ViewController *viewController = [ViewController new];
-    
     viewController.modalPresentationStyle = UIModalPresentationOverCurrentContext;
     
     //dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
@@ -174,9 +172,11 @@
 }
 
 - (void)dismissButtonClick:(UIButton *)button {
-    [self lazyDismissAnimated:YES completion:^{
-        NSLog(@"lazyDismissCompletion");
-    }];
+//    [self lazyDismissAnimated:YES completion:^{
+//        NSLog(@"lazyDismissCompletion");
+//    }];
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)logButtonClick:(UIButton *)button {
@@ -185,7 +185,7 @@
 
 
 //MARK: Utils
-- (UIColor *) getRamdomColor {
+- (UIColor *)getRamdomColor {
     CGFloat comps[3];
     for (int i = 0; i < 3; i++)
     comps[i] = (CGFloat)arc4random_uniform(256)/255.f;

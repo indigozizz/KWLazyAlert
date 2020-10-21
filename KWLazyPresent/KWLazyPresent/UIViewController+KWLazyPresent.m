@@ -129,6 +129,10 @@
     }];
     
     [self swizzle_viewDidDisappear:animated];
+    
+//    if (self.kwAutoRemoveLazyWindow && [self isBeingDismissed]) {
+//        [self lazyDismissAnimated:NO];
+//    }
 }
 
 @end
@@ -137,6 +141,15 @@
 
 @implementation UIViewController (KWLazyPresent)
 
+//- (void)setKwAutoRemoveLazyWindow:(BOOL)link {
+//    NSNumber *autoRemoveLazyWindow = [NSNumber numberWithBool:link];
+//    objc_setAssociatedObject(self, @"kwAutoRemoveLazyWindow", autoRemoveLazyWindow, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+//}
+//
+//- (BOOL)kwAutoRemoveLazyWindow {
+//    NSNumber *autoRemoveLazyWindow = objc_getAssociatedObject(self, @"kwAutoRemoveLazyWindow");
+//    return [autoRemoveLazyWindow boolValue];
+//}
 
 //MARK: - Link LifeCycle
 - (void)checkLifeCycleLinkingStatus:(void (^)(BOOL granted, UIViewController *linkedViewController))completion {
@@ -230,26 +243,26 @@
 }
 
 //MARK: - Lazy Dismiss
-- (void)lazyDismiss {
-    [self lazyDismissAnimated:YES completion:nil];
-}
-
-- (void)lazyDismissAnimated:(BOOL)animated {
-    [self lazyDismissAnimated:animated completion:nil];
-}
-
-- (void)lazyDismissAnimated:(BOOL)animated
-                 completion:(void (^ __nullable)(void))completion {
-    
-    [self dismissViewControllerAnimated:animated completion:^{
-        self.kwPresentWindow.hidden = YES;
-        self.kwPresentWindow = nil;
-        
-        if (completion != nil) {
-            completion();
-        }
-    }];
-}
+//- (void)lazyDismiss {
+//    [self lazyDismissAnimated:YES completion:nil];
+//}
+//
+//- (void)lazyDismissAnimated:(BOOL)animated {
+//    [self lazyDismissAnimated:animated completion:nil];
+//}
+//
+//- (void)lazyDismissAnimated:(BOOL)animated
+//                 completion:(void (^ __nullable)(void))completion {
+//    
+//    [self dismissViewControllerAnimated:animated completion:^{
+//        self.kwPresentWindow.hidden = YES;
+//        self.kwPresentWindow = nil;
+//        
+//        if (completion != nil) {
+//            completion();
+//        }
+//    }];
+//}
 
 //TODO: Create a InApp Notification Template with KWPassthroughView
 

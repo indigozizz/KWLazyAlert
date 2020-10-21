@@ -119,7 +119,8 @@
         self->notificationView.frame = self->hideFrame;
     } completion:^(BOOL finished) {
         [self->notificationView removeFromSuperview];
-        [self lazyDismissAnimated:NO completion:nil];
+        //[self lazyDismissAnimated:NO completion:nil];
+        [self dismissViewControllerAnimated:NO completion:nil];
     }];
 }
 
