@@ -86,50 +86,57 @@
 - (void)swizzle_viewWillAppear:(BOOL)animated {
     //NSLog(@"swizzle_viewWillAppear: %@", self);
     
-    [self checkLifeCycleLinkingStatus:^(BOOL linked, UIViewController *linkedViewController) {
-        if (linked) {
-            [self.kwLinkedViewController viewWillDisappear:animated];
-        }
-    }];
-    
-    [self swizzle_viewWillAppear:animated];
+    if ([self isBeingPresented]) {
+        [self checkLifeCycleLinkingStatus:^(BOOL linked, UIViewController *linkedViewController) {
+            if (linked) {
+                [self.kwLinkedViewController viewWillDisappear:animated];
+            }
+        }];
+        
+        [self swizzle_viewWillAppear:animated];
+    }
 }
 
 - (void)swizzle_viewDidAppear:(BOOL)animated {
     //NSLog(@"swizzle_viewDidAppear: %@", self);
     
-    [self checkLifeCycleLinkingStatus:^(BOOL linked, UIViewController *linkedViewController) {
-        if (linked) {
-            [self.kwLinkedViewController viewDidDisappear:animated];
-        }
-    }];
-    
-    [self swizzle_viewDidAppear:animated];
+    if ([self isBeingPresented]) {
+        [self checkLifeCycleLinkingStatus:^(BOOL linked, UIViewController *linkedViewController) {
+            if (linked) {
+                [self.kwLinkedViewController viewDidDisappear:animated];
+            }
+        }];
+        
+        [self swizzle_viewDidAppear:animated];
+    }
 }
 
 - (void)swizzle_viewWillDisappear:(BOOL)animated {
     //NSLog(@"swizzle_viewWillDisappear: %@", self);
     
-    [self checkLifeCycleLinkingStatus:^(BOOL linked, UIViewController *linkedViewController) {
-        if (linked) {
-            [self.kwLinkedViewController viewWillAppear:animated];
-        }
-    }];
-    
-    [self swizzle_viewWillDisappear:animated];
+    if ([self isBeingDismissed]) {
+        [self checkLifeCycleLinkingStatus:^(BOOL linked, UIViewController *linkedViewController) {
+            if (linked) {
+                [self.kwLinkedViewController viewWillAppear:animated];
+            }
+        }];
+        
+        [self swizzle_viewWillDisappear:animated];
+    }
 }
 
 - (void)swizzle_viewDidDisappear:(BOOL)animated {
     //NSLog(@"swizzle_viewDidDisappear: %@", self);
     
-    [self checkLifeCycleLinkingStatus:^(BOOL linked, UIViewController *linkedViewController) {
-        if (linked) {
-            [self.kwLinkedViewController viewDidAppear:animated];
-        }
-    }];
-    
-    [self swizzle_viewDidDisappear:animated];
-    
+    if ([self isBeingDismissed]) {
+        [self checkLifeCycleLinkingStatus:^(BOOL linked, UIViewController *linkedViewController) {
+            if (linked) {
+                [self.kwLinkedViewController viewDidAppear:animated];
+            }
+        }];
+        
+        [self swizzle_viewDidDisappear:animated];
+    }
 //    if (self.kwAutoRemoveLazyWindow && [self isBeingDismissed]) {
 //        [self lazyDismissAnimated:NO];
 //    }
