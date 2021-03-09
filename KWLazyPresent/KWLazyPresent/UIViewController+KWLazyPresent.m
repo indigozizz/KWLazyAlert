@@ -136,10 +136,15 @@
         }];
         
         [self swizzle_viewDidDisappear:animated];
+        [self releaseLazyPresent];
     }
 //    if (self.kwAutoRemoveLazyWindow && [self isBeingDismissed]) {
 //        [self lazyDismissAnimated:NO];
 //    }
+}
+
+- (void)dealloc {
+    [self releaseLazyPresent];
 }
 
 @end
@@ -270,9 +275,17 @@
 //        }
 //    }];
 //}
+- (void)releaseLazyPresent {
+    if (self.kwPresentWindow != nil) {
+        [self.kwPresentWindow.rootViewController dismissViewControllerAnimated:NO completion:^{
+            self.kwPresentWindow.hidden = YES;
+            self.kwPresentWindow.rootViewController = nil;
+            self.kwPresentWindow = nil;
+        }];
+    }
+}
 
 //TODO: Create a InApp Notification Template with KWPassthroughView
-
 
 //MARK: - kw Utils
 - (long)kwGetSuitableWindowLevel {

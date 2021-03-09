@@ -49,6 +49,8 @@ typedef enum : NSUInteger {
 //- (void)lazyDismissAnimated:(BOOL)animated
 //                 completion:(void (^ __nullable)(void))completion;
 
+- (void)releaseLazyPresent;
+
 @end
 
 NS_ASSUME_NONNULL_END
