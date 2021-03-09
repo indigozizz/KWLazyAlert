@@ -21,6 +21,9 @@
     UIButton *dismissButton;
     
     UIButton *logButton;
+    
+    UIStepper *windowTagStepper;
+
 }
 
 @end
@@ -70,6 +73,12 @@
     
     long count = [UIApplication sharedApplication].windows.count;
     
+    windowTagStepper = [[UIStepper alloc] init];
+    windowTagStepper.minimumValue = 1;
+    windowTagStepper.value = count;
+    windowTagStepper.maximumValue = count;
+    [windowTagStepper addTarget:self action:@selector(windowTagStepperChanged:) forControlEvents:UIControlEventValueChanged];
+    
     windowCountLabel = [UILabel new];
     windowCountLabel.frame = CGRectMake(10, 10, self.view.frame.size.width, 60);
     windowCountLabel.text = [NSString stringWithFormat:@"%02ld", count];
@@ -77,6 +86,8 @@
     windowCountLabel.textColor = [self getRamdomColor];
     windowCountLabel.shadowColor = UIColor.blackColor;
     windowCountLabel.shadowOffset = CGSizeMake(-1, -1);
+    
+    //windowTagStepper.maximumValue = count;
     
     notificationButton = [UIButton buttonWithType:UIButtonTypeSystem];
     notificationButton.frame = CGRectMake(0, 0, 180, 60);
@@ -104,11 +115,16 @@
     
     dismissButton = [UIButton buttonWithType:UIButtonTypeSystem];
     dismissButton.frame = CGRectMake(0, 0, 180, 60);
-    [dismissButton setTitle:@"Dismiss" forState:UIControlStateNormal];
+        
+    [dismissButton setTitle:[self dismissTitleWithIndex: windowTagStepper.value]
+                   forState:UIControlStateNormal];
     [dismissButton setTitleColor:UIColor.blackColor forState:UIControlStateNormal];
     dismissButton.backgroundColor = [UIColor redColor];
     
     [dismissButton addTarget:self action:@selector(dismissButtonClick:) forControlEvents:UIControlEventTouchUpInside];
+    
+    dismissButton.enabled = count != 1;
+    dismissButton.alpha = (count != 1) ? 1 : 0.5;
     
     logButton = [UIButton buttonWithType:UIButtonTypeSystem];
     logButton.frame = CGRectMake(0, 0, 180, 60);
@@ -117,8 +133,7 @@
     logButton.backgroundColor = [UIColor blackColor];
     
     [logButton addTarget:self action:@selector(logButtonClick:) forControlEvents:UIControlEventTouchUpInside];
-    
-    
+        
     notificationButton.center = CGPointMake(self.view.center.x, self.view.center.y - 140);
     
     alertButton.center = CGPointMake(self.view.center.x, self.view.center.y - 70);
@@ -129,12 +144,18 @@
     
     logButton.center = CGPointMake(self.view.center.x, self.view.center.y + 140);
     
+    windowTagStepper.center = CGPointMake(
+            CGRectGetMaxX(dismissButton.frame) + windowTagStepper.frame.size.width / 2 + 5,
+                                          dismissButton.center.y);
+    
     [self.view addSubview:windowCountLabel];
     [self.view addSubview:notificationButton];
     [self.view addSubview:alertButton];
     [self.view addSubview:showButton];
     [self.view addSubview:dismissButton];
     [self.view addSubview:logButton];
+    
+    [self.view addSubview:windowTagStepper];
 }
 
 - (void)notificationButtonClick:(UIButton *)button {
@@ -154,7 +175,11 @@
 
 - (void)showButtonClick:(UIButton *)button {
 
-    ViewController *viewController = [ViewController new];
+    //ViewController *viewController = [ViewController new];
+    ViewController *viewController = [self.storyboard instantiateViewControllerWithIdentifier:@"ViewController"];
+    
+    viewController.tag = [UIApplication sharedApplication].windows.count + 1;
+    
     viewController.modalPresentationStyle = UIModalPresentationOverCurrentContext;
     
     //dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
@@ -165,7 +190,7 @@
     
     //});
     
-    [viewController linkLifeCycleWith:self];
+    [viewController kw_linkLifeCycleWith:self];
     [viewController lazyPresentAnimated:YES completion:^{
         NSLog(@"lazyPresentCompletion");
     }];
@@ -176,11 +201,17 @@
 //        NSLog(@"lazyDismissCompletion");
 //    }];
     
-    [self dismissViewControllerAnimated:YES completion:nil];
+//    [self dismissViewControllerAnimated:YES completion:nil];
+    
+    [self lazyDismissWithTag:windowTagStepper.value];
 }
 
 - (void)logButtonClick:(UIButton *)button {
     NSLog(@"logButtonClick");
+}
+
+- (IBAction)windowTagStepperChanged:(UIStepper *)sender {
+    [dismissButton setTitle:[self dismissTitleWithIndex:sender.value] forState:UIControlStateNormal];
 }
 
 
@@ -191,6 +222,22 @@
     comps[i] = (CGFloat)arc4random_uniform(256)/255.f;
     
     return [UIColor colorWithRed:comps[0] green:comps[1] blue:comps[2] alpha:1.0];
+}
+
+- (NSString *)dismissTitleWithIndex:(int)index {
+    
+    NSString *ordinal = @"th";
+    
+    if (index == 1) {
+        ordinal = @"st";
+    }
+    else if (index == 2) {
+        ordinal = @"nd";
+    }
+    
+    NSString *dismissTitle = [NSString stringWithFormat:@"Dismiss %d%@", index, ordinal];
+    
+    return dismissTitle;
 }
 
 @end

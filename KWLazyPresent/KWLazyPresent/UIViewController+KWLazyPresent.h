@@ -12,7 +12,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 typedef enum : NSUInteger {
-    
+
     //WindowLevel is Previous Window Level + 1
     KWLazyPresentDefaultStyle,
     
@@ -25,11 +25,12 @@ typedef enum : NSUInteger {
 
 ////Enable: Auto call lazyDismissAnimated:NO when viewController's viewDidDisappear
 //@property (nonatomic, readwrite) BOOL kwAutoRemoveLazyWindow;
+@property (nonatomic, readwrite) NSInteger tag;
 
 //Linked: Call linkedViewController's viewWillDisappear/viewDidDisappear in viewController's viewWillAppear/viewDidAppear, and vice versa.
-- (void)checkLifeCycleLinkingStatus:(void (^)(BOOL granted, UIViewController *linkedViewController))completion;
-- (void)linkLifeCycleWith:(UIViewController *)viewController;
-- (void)unlinkLifeCycle;
+- (void)kw_checkLifeCycleLinkingStatus:(void (^)(BOOL granted, UIViewController *linkedViewController))completion;
+- (void)kw_linkLifeCycleWith:(UIViewController *)viewController;
+- (void)kw_unlinkLifeCycle;
 
 - (void)lazyPresent;
 
@@ -49,7 +50,10 @@ typedef enum : NSUInteger {
 //- (void)lazyDismissAnimated:(BOOL)animated
 //                 completion:(void (^ __nullable)(void))completion;
 
-- (void)releaseLazyPresent;
+- (void)releaseLazyWindow;
+
+- (UIViewController *)kw_viewControllerWithTag:(NSInteger)tag;
+- (BOOL)lazyDismissWithTag:(NSInteger)tag;
 
 @end
 

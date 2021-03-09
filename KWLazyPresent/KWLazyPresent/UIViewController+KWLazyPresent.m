@@ -29,7 +29,6 @@
 @dynamic kwPresentWindow;
 @dynamic kwLinkedViewController;
 
-
 - (void)setKwPresentWindow:(UIWindow *)window {
     objc_setAssociatedObject(self, @selector(kwPresentWindow), window, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
@@ -87,7 +86,7 @@
     //NSLog(@"swizzle_viewWillAppear: %@", self);
     
     if ([self isBeingPresented]) {
-        [self checkLifeCycleLinkingStatus:^(BOOL linked, UIViewController *linkedViewController) {
+        [self kw_checkLifeCycleLinkingStatus:^(BOOL linked, UIViewController *linkedViewController) {
             if (linked) {
                 [self.kwLinkedViewController viewWillDisappear:animated];
             }
@@ -101,7 +100,7 @@
     //NSLog(@"swizzle_viewDidAppear: %@", self);
     
     if ([self isBeingPresented]) {
-        [self checkLifeCycleLinkingStatus:^(BOOL linked, UIViewController *linkedViewController) {
+        [self kw_checkLifeCycleLinkingStatus:^(BOOL linked, UIViewController *linkedViewController) {
             if (linked) {
                 [self.kwLinkedViewController viewDidDisappear:animated];
             }
@@ -115,7 +114,7 @@
     //NSLog(@"swizzle_viewWillDisappear: %@", self);
     
     if ([self isBeingDismissed]) {
-        [self checkLifeCycleLinkingStatus:^(BOOL linked, UIViewController *linkedViewController) {
+        [self kw_checkLifeCycleLinkingStatus:^(BOOL linked, UIViewController *linkedViewController) {
             if (linked) {
                 [self.kwLinkedViewController viewWillAppear:animated];
             }
@@ -129,14 +128,14 @@
     //NSLog(@"swizzle_viewDidDisappear: %@", self);
     
     if ([self isBeingDismissed]) {
-        [self checkLifeCycleLinkingStatus:^(BOOL linked, UIViewController *linkedViewController) {
+        [self kw_checkLifeCycleLinkingStatus:^(BOOL linked, UIViewController *linkedViewController) {
             if (linked) {
                 [self.kwLinkedViewController viewDidAppear:animated];
             }
         }];
         
         [self swizzle_viewDidDisappear:animated];
-        [self releaseLazyPresent];
+        [self releaseLazyWindow];
     }
 //    if (self.kwAutoRemoveLazyWindow && [self isBeingDismissed]) {
 //        [self lazyDismissAnimated:NO];
@@ -144,7 +143,7 @@
 }
 
 - (void)dealloc {
-    [self releaseLazyPresent];
+    [self releaseLazyWindow];
 }
 
 @end
@@ -153,18 +152,20 @@
 
 @implementation UIViewController (KWLazyPresent)
 
-//- (void)setKwAutoRemoveLazyWindow:(BOOL)link {
-//    NSNumber *autoRemoveLazyWindow = [NSNumber numberWithBool:link];
-//    objc_setAssociatedObject(self, @"kwAutoRemoveLazyWindow", autoRemoveLazyWindow, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-//}
-//
-//- (BOOL)kwAutoRemoveLazyWindow {
-//    NSNumber *autoRemoveLazyWindow = objc_getAssociatedObject(self, @"kwAutoRemoveLazyWindow");
-//    return [autoRemoveLazyWindow boolValue];
-//}
+@dynamic tag;
+
+- (void)setTag:(NSInteger)tag {
+    NSNumber *tagNumber = [NSNumber numberWithInteger:tag];
+    objc_setAssociatedObject(self, @"tag", tagNumber, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+- (NSInteger)tag {
+    NSNumber *tagNumber = objc_getAssociatedObject(self, @"tag");
+    return [tagNumber integerValue];
+}
 
 //MARK: - Link LifeCycle
-- (void)checkLifeCycleLinkingStatus:(void (^)(BOOL granted, UIViewController *linkedViewController))completion {
+- (void)kw_checkLifeCycleLinkingStatus:(void (^)(BOOL granted, UIViewController *linkedViewController))completion {
     
     if (self.kwLinkedViewController && completion) {
         completion(YES, self.kwLinkedViewController);
@@ -173,11 +174,11 @@
     completion(NO, nil);
 }
 
-- (void)linkLifeCycleWith:(UIViewController *)viewController {
+- (void)kw_linkLifeCycleWith:(UIViewController *)viewController {
     self.kwLinkedViewController = viewController;
 }
 
-- (void)unlinkLifeCycle {
+- (void)kw_unlinkLifeCycle {
     self.kwLinkedViewController = nil;
 }
 
@@ -216,6 +217,8 @@
             
             self.kwPresentWindow = [[KWWindow alloc] initWithWindowScene:windowScene];
             self.kwPresentWindow.frame = UIScreen.mainScreen.bounds;
+            self.kwPresentWindow.kwLazyTag = self.tag;
+            NSLog(@"");
         }
         
     }
@@ -245,7 +248,7 @@
             break;
             
         default:
-            self.kwPresentWindow.windowLevel = [self kwGetSuitableWindowLevel];
+            self.kwPresentWindow.windowLevel = [self kw_getSuitableWindowLevel];
             break;
     }
 
@@ -275,7 +278,7 @@
 //        }
 //    }];
 //}
-- (void)releaseLazyPresent {
+- (void)releaseLazyWindow {
     if (self.kwPresentWindow != nil) {
         [self.kwPresentWindow.rootViewController dismissViewControllerAnimated:NO completion:^{
             self.kwPresentWindow.hidden = YES;
@@ -288,12 +291,11 @@
 //TODO: Create a InApp Notification Template with KWPassthroughView
 
 //MARK: - kw Utils
-- (long)kwGetSuitableWindowLevel {
+- (long)kw_getSuitableWindowLevel {
     // Default Max Window Level
     long windowLevel = KWWindowLevelNotification - 1;
     
-    for (UIWindow *window in [[UIApplication sharedApplication].windows reverseObjectEnumerator])
-    {
+    for (UIWindow *window in [[UIApplication sharedApplication].windows reverseObjectEnumerator]) {
         // Max Window Level should not over  UIWindowLevelAlert
         if (window.windowLevel >= KWWindowLevelNotification - 1) {
             continue;
@@ -302,6 +304,34 @@
     }
     
     return windowLevel;
+}
+
+- (UIViewController *)kw_viewControllerWithTag:(NSInteger)tag {
+        
+    for (UIWindow *window in [[UIApplication sharedApplication].windows reverseObjectEnumerator]) {
+        
+        if (![window isKindOfClass:[KWWindow class]]) {
+            continue;
+        }
+        
+        KWWindow *kwWindows = (KWWindow *)window;
+        if (kwWindows.kwLazyTag == tag) {
+            return kwWindows.rootViewController.presentedViewController;
+        }
+    }
+    return nil;
+}
+
+- (BOOL)lazyDismissWithTag:(NSInteger)tag {
+    
+    UIViewController *viewController = [self kw_viewControllerWithTag:tag];
+    
+    if (viewController) {
+        [viewController dismissViewControllerAnimated:NO completion:nil];
+        return YES;
+    }
+    
+    return NO;
 }
 
 @end

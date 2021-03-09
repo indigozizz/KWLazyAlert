@@ -11,6 +11,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface KWWindow : UIWindow
 
+@property (nonatomic, readwrite) NSInteger kwLazyTag;
+
 @end
 
 NS_ASSUME_NONNULL_END
