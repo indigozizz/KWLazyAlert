@@ -175,8 +175,8 @@
 
 - (void)showButtonClick:(UIButton *)button {
 
-    //ViewController *viewController = [ViewController new];
-    ViewController *viewController = [self.storyboard instantiateViewControllerWithIdentifier:@"ViewController"];
+    ViewController *viewController = [ViewController new];
+    //ViewController *viewController = [self.storyboard instantiateViewControllerWithIdentifier:@"ViewController"];
     
     viewController.tag = [UIApplication sharedApplication].windows.count + 1;
     
