@@ -240,4 +240,8 @@
     return dismissTitle;
 }
 
+- (void)dealloc {
+    NSLog(@"original_dealloc: %@", self);
+}
+
 @end

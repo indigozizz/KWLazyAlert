@@ -74,13 +74,18 @@
     Method origin_viewDidDisappear_method = class_getInstanceMethod([self class], @selector(viewDidDisappear:));
     Method swizzle_viewDidDisappear_method = class_getInstanceMethod([self class], @selector(swizzle_viewDidDisappear:));
     
+    //↓ ARC forbids use of 'dealloc' in a @selector ↓
+    //Method origin_deallo_method = class_getInstanceMethod([self class], @selector(dealloc));
+    //↓ Use NSSelectorFromString instead of @selector ↓
+    Method origin_dealloc_method = class_getInstanceMethod([self class], NSSelectorFromString(@"dealloc"));
+    Method swizzle_dealloc_method = class_getInstanceMethod([self class], @selector(swizzle_dealloc));
+    
     method_exchangeImplementations(origin_viewWillAppear_method, swizzle_viewWillAppear_method);
     method_exchangeImplementations(origin_viewDidAppear_method, swizzle_viewDidAppear_method);
     method_exchangeImplementations(origin_viewWillDisappear_method, swizzle_viewWillDisappear_method);
     method_exchangeImplementations(origin_viewDidDisappear_method, swizzle_viewDidDisappear_method);
+    method_exchangeImplementations(origin_dealloc_method, swizzle_dealloc_method);
 }
-
-
 
 - (void)swizzle_viewWillAppear:(BOOL)animated {
     //NSLog(@"swizzle_viewWillAppear: %@", self);
@@ -142,8 +147,16 @@
 //    }
 }
 
-- (void)dealloc {
-    [self releaseLazyWindow];
+- (void)swizzle_dealloc {
+    NSLog(@"swizzle_dealloc: %@", self);
+
+    BOOL respond = [self respondsToSelector:@selector(releaseLazyWindow)];
+    if (respond) {
+        [self releaseLazyWindow];
+    }
+    
+    [self swizzle_dealloc];
+
 }
 
 @end
