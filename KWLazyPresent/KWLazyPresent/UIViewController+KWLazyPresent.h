@@ -53,6 +53,8 @@ typedef enum : NSUInteger {
 - (void)releaseLazyWindow;
 
 - (UIViewController *)kw_viewControllerWithTag:(NSInteger)tag;
+
+- (BOOL)lazyDismissWithTag:(NSInteger)tag animation:(BOOL)animation;
 - (BOOL)lazyDismissWithTag:(NSInteger)tag;
 
 @end

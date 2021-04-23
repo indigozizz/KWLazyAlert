@@ -335,16 +335,22 @@
     return nil;
 }
 
-- (BOOL)lazyDismissWithTag:(NSInteger)tag {
+- (BOOL)lazyDismissWithTag:(NSInteger)tag
+                 animation:(BOOL)animation {
     
     UIViewController *viewController = [self kw_viewControllerWithTag:tag];
     
     if (viewController) {
-        [viewController dismissViewControllerAnimated:NO completion:nil];
+        [viewController dismissViewControllerAnimated:animation completion:nil];
         return YES;
     }
     
     return NO;
 }
+
+- (BOOL)lazyDismissWithTag:(NSInteger)tag {
+    return [self lazyDismissWithTag:tag animation:NO];
+}
+
 
 @end
